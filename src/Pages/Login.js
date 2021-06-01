@@ -43,10 +43,10 @@ const Login = () => {
                 <p className="mt-4">By continuing, you agree to amazon's <a className="txttwo" href="/">Conditions of use</a> and  <a className="txttwo" href="/">Privacy's Notice.</a></p>
                 <a className="txttwo" href="/">Need Help?</a>
               </div>
-              <div className="newText my-4">
-                <div className="L-line"></div>
-                <div><p className="txtfour">New to Amazon?</p></div>
-                <div className="R-line"></div>
+              <div className="row my-4">
+                <div className="col L-line"></div>
+                <div className="col-auto"><p className="txtfour">New to Amazon?</p></div>
+                <div className="col R-line"></div>
                 </div>
               <div>
                 <button className="btn btntwo" type="submit" onClick={handleSignup}>
