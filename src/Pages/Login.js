@@ -1,12 +1,12 @@
 import React from 'react'
-import '../index.css';
+import '../style.css'
 
 function Login() {
   return (
     <div className="container">
         <div className="row justify-content-center">
           <div className="col-4">
-          <img></img>
+          <img className='logo' src="images/logo.png" alt="logo"></img>
           <div className="loginContainer">
           <h3>Sign In</h3>
           <p><strong>Email or mobile phone number</strong></p>
@@ -22,11 +22,7 @@ function Login() {
         </button>
       </div>
       </div>
-      
       </div>
-       
-
-     
     </div>
         );
 }

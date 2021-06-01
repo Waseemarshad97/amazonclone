@@ -1,7 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router';
-
-import '../index.css';
 
 function Home() {
   return (

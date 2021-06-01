@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css';
-import {Router, Route, Switch} from 'react-router-dom';
+import './style.css';
+import {Router, Route} from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Home from './Pages/Home';
