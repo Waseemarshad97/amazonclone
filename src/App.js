@@ -1,20 +1,25 @@
 import React from 'react'
 import './App.css';
-import './style.css';
-import {Router, Route} from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Payout from './Pages/Payout';
+import Signup from './Pages/Signup';
+import Nav from './Pages/Nav';
 
 const App = () => {
-  const history = createBrowserHistory();
   return (
-    <Router history={history}>
-      <Route path='/' exact component ={Home} />
-      <Route path='/Login' component ={Login} />
-      <Route path='/Payout' component ={Payout} />
+    <Router>
+      <Switch>
+        <Route path='/' exact>
+          <Nav />
+          <Home />
+        </Route>
+        <Route path='/Login' component ={Login} />
+        <Route path='/Payout' component ={Payout} />
+        <Route path='/signup' component={Signup} />
+      </Switch>
   </Router>
 
     );

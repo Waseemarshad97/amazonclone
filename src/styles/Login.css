@@ -1,0 +1,68 @@
+.logo{
+    max-width: 33%;
+}
+.loginContainer{
+    width: 100%;
+    border: 1px #a4a3a373 solid;
+    box-shadow: 0px 0 2px -4px #c9c9c9;
+    border-radius: 5px;
+    padding: 20px;
+
+}
+.Fontone{
+    font-size: 1.8rem;
+    color: #111;
+}
+.fontthree{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    margin-top: 20px;
+
+}
+.inputone{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px #979797b3 solid;
+}
+.inputone :hover{
+    box-shadow: 1px 1px 1px 1px #fcd87d;
+}
+.loginbtn{
+    display: block;
+    width: 100%;
+    background: #fcd87d;
+    border-color: #a88734 #9c7e31 #846a29;
+}
+.txttwo{
+    text-decoration:none;
+    color: #0053cd;
+}
+.btntwo{
+    width: 100%;
+    background: #e7e9ec;
+    border-radius: 3px;
+    border-color: #adb1b8 #a2a6ac #8d9096;
+    border-style: solid;
+    border-width: 1px;
+
+}
+.newText{
+display: flex;
+}
+.txtfour{
+    color: grey;
+}
+.L-line{
+    width: 34%;
+    border-top: 1px solid #cbcbcb;
+    margin-top: 13px;
+    margin-right: 5px;
+}
+.R-line{
+    width: 34%;
+    border-top: 1px solid #cbcbcb;
+    margin-top: 13px;
+    margin-left: 5px;
+}
