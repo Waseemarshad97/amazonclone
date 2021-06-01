@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router';
+import '../styles/Home.css'
 
-import '../index.css';
-
-function Home() {
+const Home = () => {
   return (
     <div className="home">
       <header className="App-header">
           <p>hi im a home page</p>
-          
       </header>
     </div>
   );

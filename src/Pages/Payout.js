@@ -1,10 +1,10 @@
 import React from 'react'
-import '../index.css';
+import '../styles/Payout.css';
 
-function Payout() {
+const Payout = () => {
   return (
     <div className="home">
-      <header className="App-header">
+      <header className="uu">
           <p>hi im a Payout page</p>
       </header>
     </div>
