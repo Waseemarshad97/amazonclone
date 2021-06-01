@@ -55,13 +55,13 @@ display: flex;
     color: grey;
 }
 .L-line{
-    width: 34%;
+
     border-top: 1px solid #cbcbcb;
     margin-top: 13px;
     margin-right: 5px;
 }
 .R-line{
-    width: 34%;
+
     border-top: 1px solid #cbcbcb;
     margin-top: 13px;
     margin-left: 5px;
