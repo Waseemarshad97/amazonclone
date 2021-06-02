@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../styles/Login.css';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import {auth} from "../firebase"
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -17,6 +18,17 @@ const Login = () => {
   const handleSiginin = (e) => {
     e.preventDefault()
     console.log(password);
+    //  code from firebase
+    auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
   }
 
   const handleSignup = (e) => {
