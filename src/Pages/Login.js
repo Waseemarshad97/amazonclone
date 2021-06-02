@@ -12,18 +12,28 @@ const Login = () => {
   const handleAccountCheck = (e) => {
     e.preventDefault()
     console.log(email);
-    setShow(true);
+    auth.fetchSignInMethodsForEmail(email)
+    .then((res) => {
+      if(res.length != 0){
+        setShow(true);
+      }
+      else{
+        alert("email not valid!")
+      }
+    })
+    .catch(() => {
+      alert("email not valid!")
+      });
   };
 
   const handleSiginin = (e) => {
     e.preventDefault()
-    console.log(password);
     //  code from firebase
     auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    // ...
+    history.push('/')
   })
   .catch((error) => {
     var errorCode = error.code;
