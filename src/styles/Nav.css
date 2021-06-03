@@ -1,0 +1,47 @@
+.navbar{
+    display: flex;
+    background-color: #0F1111;
+    padding: 10px;
+    height: 66px;
+
+}
+.logo{
+    margin: 4px
+}
+.search-container button {
+  
+    border: none;
+    cursor: pointer;
+  }
+  .search-container button:hover {
+    background: #ccc;
+  }
+  .inputone{
+    width: 28rem;   
+    line-height: 15px;
+    padding: 7px 10px 10px 0;
+    border-radius: 4px 0px 0px 4px;
+    margin: 0;
+    border: 0;
+    height: 38px;
+    font-family: inherit;
+    font-size: 15px;
+    background: white;
+    color: #111;
+    outline: 0;
+    padding-inline: 4px;
+  }
+  .searchbtn{
+    color: #f2f1f1;
+    background-color: #f6981c;
+    border-radius: 0px 4px 4px 0px;
+    margin-right: 0px;
+    width: 2.5rem;
+  }
+  .navtxt{
+      color: white;
+
+  }
+  .w-one{
+      width:100px;
+  }
