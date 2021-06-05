@@ -1,29 +1,39 @@
-.navbar{
+.nav-container{
     display: flex;
     background-color: #0F1111;
-    padding: 10px;
-    height: 66px;
-
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    color: white;
 }
-.logo{
-    margin: 4px
+.logo-container{
+  height: 50px;
+  margin-left: 16px;
+}
+.nav-logo{
+    margin-top: 16px;
+    width: 103px;
+    height: 33px;
+    padding: 4px;
+}
+.search-container {
+  width: 70%;
+  height: 38px;
+  margin-left: 50px;
 }
 .search-container button {
   
     border: none;
     cursor: pointer;
   }
-  .search-container button:hover {
-    background: #ccc;
-  }
-  .inputone{
-    width: 28rem;   
+  .nav-inputone{
+    width: 100%;   
     line-height: 15px;
     padding: 7px 10px 10px 0;
     border-radius: 4px 0px 0px 4px;
     margin: 0;
     border: 0;
-    height: 38px;
+    height: 100%;
     font-family: inherit;
     font-size: 15px;
     background: white;
@@ -31,17 +41,46 @@
     outline: 0;
     padding-inline: 4px;
   }
+  .nav-inputone:focus .search-container{
+    border: 0.5px rgb(255, 140, 0) solid !important;
+  }
   .searchbtn{
     color: #f2f1f1;
-    background-color: #f6981c;
+    background-color: #e4a046;
     border-radius: 0px 4px 4px 0px;
     margin-right: 0px;
     width: 2.5rem;
+  }
+  .searchbtn:hover{
+    background-color: #db9840;
   }
   .navtxt{
       color: white;
 
   }
   .w-one{
-      width:100px;
+    padding: 4px;
   }
+  .w-one:hover{
+    outline: white solid 1px;
+  }
+  .nav-elements {
+    display: flex;
+    margin-left: 10px;
+    height: 50px;
+    justify-content: space-evenly;
+    width: 30%;
+    align-items: center;
+  }
+.cart-icon {
+  font-size: 30px !important;
+  color: white;
+  margin-top: 10px;
+}
+.logo-container:hover{
+  outline: white solid 1px;
+}
+.cart-count {
+  font-size: 20px;
+  font-weight: 700;
+}

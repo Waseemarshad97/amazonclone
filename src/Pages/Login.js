@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/Login.css';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {auth} from "../firebase"
 const Login = () => {
@@ -56,14 +56,15 @@ const Login = () => {
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" className="logo" alt="logo" />
             </Link>
           </div>
-          {!show ?
-            (
               <div className="baseContainer">
                 <div className="loginContainer">
                   <form>
                   <h3 className="Fontone">Sign-In</h3>
                   <p className="fontthree">Email or mobile phone number</p>
                   <input className="inputone mb-3" type="tel" onChange={(e) => setEmail(e.target.value)} value={email} />
+                  <p className="forgot fontthree">Password <span><a href="/">Forgot password?</a></span></p>
+                  <input type="password" className="inputone mb-3" onChange={(e) => setPassword(e.target.value)} value={password} />
+
                   <button className="btn loginbtn" type="submit" onClick={handleAccountCheck}>Continue</button>
                   <p className="mt-3 txttwo">By continuing, you agree to amazon clone's <a className="txttwo" href="/">Conditions of Use</a> and  <a className="txttwo" href="/">Privacy's Notice.</a></p>
                   <a className="txttwo" href="/">Need Help?</a>
@@ -80,8 +81,8 @@ const Login = () => {
                     Create your Amazon Account
                     </button>
                 </div>
-              </div>) : (
-              <div className="baseContainer">
+              </div>
+              {/* <div className="baseContainer">
                 <div className="loginContainer">
                   <h3 className="Fontone">Sign-In</h3>
                   <p className="fontthree">Password <span><a href="/">Forgot password?</a></span></p>
@@ -92,8 +93,7 @@ const Login = () => {
                     <span>Keep me signed in. <a href="/">Details</a></span>
                   </div>
                 </div>
-              </div>
-            )}
+              </div> */}
         </div>
       </div>
       <div className="row justify-content-center footer mt-4">
