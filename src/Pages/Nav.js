@@ -28,8 +28,6 @@ const Nav = () => {
                     <span className="cart-count">2</span>
                 </div>
             </div>
-
-
         </div>
     )
 }
