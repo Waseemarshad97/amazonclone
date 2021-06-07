@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Nav.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { Link } from 'react-router-dom';
+import { Modal, ModalBody } from 'react-bootstrap';
 
 const Nav = () => {
+    const [showModal, setShowModal] = useState(false);
+    
     return (
         <div className="nav-container">
             <div className="logo-container">
@@ -15,20 +19,88 @@ const Nav = () => {
                     <button className="searchbtn text-dark" type="submit"><SearchIcon /></button>
                 </form>
             </div>
-
             <div className="nav-elements">
-                <div className="w-one">
-                    <text className="navtxt">Hello User <br /> <span>Sign In</span></text>
-                </div>
-                <div className="w-one">
-                    <text className="navtxt">Returns & <br /> <span>Orders</span></text>
-                </div>
-                <div className="w-one">
+                <Link to="/login">
+                    <div className="w-one">
+                        <small>Hello User <br /> <span className="navtxt">Sign In</span></small>
+                    </div>
+                </Link>
+                <Link to="/">
+                    <div className="w-one">
+                        <small>Returns <br /> <span className="navtxt"> & Orders</span></small>
+                    </div>
+                </Link>
+                <div className="w-one" onClick={() => setShowModal(!showModal)}>
                     <ShoppingCartOutlinedIcon className="cart-icon"/>
                     <span className="cart-count">2</span>
                 </div>
             </div>
+            <Modal show={showModal} onHide={() => setShowModal(false)} scrollable>
+            <Modal.Header>
+                <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="cart-container">
+                            <img className="product-image" src="" alt="name" />
+                            <div className="product-details">
+                                <strong>Name</strong>
+                                <p>details of the products get displayed here</p>
+                                <strong>Price</strong>
+                            </div>
+                            <button className="btn">Add to Cart</button>
+                        </div>
+                        <div className="cart-container">
+                            <img className="product-image" src="" alt="name" />
+                            <div className="product-details">
+                                <strong>Name</strong>
+                                <p>details of the products get displayed here</p>
+                                <strong>Price</strong>
+                            </div>
+                            <button className="btn">Add to Cart</button>
+                        </div>
+                        <div className="cart-container">
+                            <img className="product-image" src="" alt="name" />
+                            <div className="product-details">
+                                <strong>Name</strong>
+                                <p>details of the products get displayed here</p>
+                                <strong>Price</strong>
+                            </div>
+                            <button className="btn">Add to Cart</button>
+                        </div>
+                        <div className="cart-container">
+                            <img className="product-image" src="" alt="name" />
+                            <div className="product-details">
+                                <strong>Name</strong>
+                                <p>details of the products get displayed here</p>
+                                <strong>Price</strong>
+                            </div>
+                            <button className="btn">Add to Cart</button>
+                        </div>
+                        <div className="cart-container">
+                            <img className="product-image" src="" alt="name" />
+                            <div className="product-details">
+                                <strong>Name</strong>
+                                <p>details of the products get displayed here</p>
+                                <strong>Price</strong>
+                            </div>
+                            <button className="btn">Add to Cart</button>
+                        </div>
+                        <div className="cart-container">
+                            <img className="product-image" src="" alt="name" />
+                            <div className="product-details">
+                                <strong>Name</strong>
+                                <p>details of the products get displayed here</p>
+                                <strong>Price</strong>
+                            </div>
+                            <button className="btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </Modal.Body>
 
+            </Modal> 
 
         </div>
     )

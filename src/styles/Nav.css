@@ -6,6 +6,7 @@
     align-items: center;
     color: white;
 }
+
 .logo-container{
   height: 50px;
   margin-left: 16px;
@@ -42,7 +43,7 @@
     padding-inline: 4px;
   }
   .nav-inputone:focus .search-container{
-    border: 0.5px rgb(255, 140, 0) solid !important;
+    outline: 2px #e47911 solid !important;
   }
   .searchbtn{
     color: #f2f1f1;
@@ -55,11 +56,12 @@
     background-color: #db9840;
   }
   .navtxt{
-      color: white;
-
+    font-size: 16px;
+    font-weight: 700;
   }
   .w-one{
-    padding: 4px;
+    padding: 1px 5px;
+    cursor: pointer;
   }
   .w-one:hover{
     outline: white solid 1px;
@@ -72,6 +74,9 @@
     width: 30%;
     align-items: center;
   }
+  .nav-elements a{
+    color: white !important;
+  }
 .cart-icon {
   font-size: 30px !important;
   color: white;
@@ -83,4 +88,8 @@
 .cart-count {
   font-size: 20px;
   font-weight: 700;
+}
+.cart-container{
+  border-bottom: solid 1px #111;
+  padding: 10px;
 }

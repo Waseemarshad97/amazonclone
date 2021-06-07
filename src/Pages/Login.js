@@ -2,29 +2,12 @@ import React, { useState } from 'react'
 import '../styles/Login.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import {auth} from "../firebase"
+import {auth} from "../firebase";
+
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [show, setShow] = useState(false);
   const history = useHistory();
-
-  const handleAccountCheck = (e) => {
-    e.preventDefault()
-    console.log(email);
-    auth.fetchSignInMethodsForEmail(email)
-    .then((res) => {
-      if(res.length !== 0){
-        setShow(true);
-      }
-      else{
-        alert("email not valid!")
-      }
-    })
-    .catch(() => {
-      alert("email not valid!")
-      });
-  };
 
   const handleSiginin = (e) => {
     e.preventDefault()
@@ -41,11 +24,6 @@ const Login = () => {
   });
   }
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    console.log(email);
-    history.push('/signup')
-  };
 
   return (
     <div className="container login">
@@ -65,7 +43,7 @@ const Login = () => {
                   <p className="forgot fontthree">Password <span><a href="/">Forgot password?</a></span></p>
                   <input type="password" className="inputone mb-3" onChange={(e) => setPassword(e.target.value)} value={password} />
 
-                  <button className="btn loginbtn" type="submit" onClick={handleAccountCheck}>Continue</button>
+                  <button className="btn loginbtn" type="submit" onClick={handleSiginin}>Continue</button>
                   <p className="mt-3 txttwo">By continuing, you agree to amazon clone's <a className="txttwo" href="/">Conditions of Use</a> and  <a className="txttwo" href="/">Privacy's Notice.</a></p>
                   <a className="txttwo" href="/">Need Help?</a>
                   </form>
@@ -77,9 +55,9 @@ const Login = () => {
                   <div className="col R-line"></div>
                 </div>
                 <div>
-                  <button className="btn btntwo" type="submit" onClick={handleSignup}>
-                    Create your Amazon Account
-                    </button>
+                  <Link to="/signup">
+                    <button className="btn btntwo" type="button">Create your Amazon Account</button>
+                  </Link>
                 </div>
               </div>
               {/* <div className="baseContainer">

@@ -16,8 +16,8 @@ const App = () => {
           <Nav />
           <Home />
         </Route>
-        <Route path='/Login' component ={Login} />
-        <Route path='/Payout' component ={Payout} />
+        <Route path='/login' component ={Login} />
+        <Route path='/payout' component ={Payout} />
         <Route path='/signup' component={Signup} />
       </Switch>
   </Router>
