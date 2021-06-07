@@ -4,6 +4,7 @@ import data from "./firebase.config.json"
 const firebaseConfig = data;
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.firestore();
-const auth = firebase.auth();
-export { db, auth };
+const db = firebase.firestore(firebaseApp);
+const auth = firebase.auth(firebaseApp);
+const storage = firebase.storage(firebaseApp);
+export { db, auth, storage };
