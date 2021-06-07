@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <div className="container login">
       <div className="row d-flex justify-content-center">
-        <div className="col-lg-4">
+        <div className="col-lg-5">
           <div className="text-center">
             <Link to="/">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" className="logo" alt="logo" />
