@@ -12,7 +12,6 @@ const Login = () => {
   const handleSiginin = (e) => {
     e.preventDefault()
     //  code from firebase
-    auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
@@ -23,8 +22,6 @@ const Login = () => {
     var errorMessage = error.message;
   });
   }
-
-
   return (
     <div className="container login">
       <div className="row d-flex justify-content-center">

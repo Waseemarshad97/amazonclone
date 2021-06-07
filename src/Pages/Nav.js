@@ -35,7 +35,7 @@ const Nav = () => {
                     <span className="cart-count">2</span>
                 </div>
             </div>
-            <Modal show={showModal} onHide={() => setShowModal(false)} scrollable>
+            <Modal size="lg" show={showModal} onHide={() => setShowModal(false)} scrollable>
             {/* <Modal.Header>
                 <Modal.Title>Shopping Cart</Modal.Title>
             </Modal.Header> */}
