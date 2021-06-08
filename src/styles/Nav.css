@@ -5,6 +5,7 @@
     width: 100%;
     align-items: center;
     color: white;
+    z-index: 2;
 }
 
 .logo-container{

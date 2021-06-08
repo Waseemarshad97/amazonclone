@@ -1,0 +1,21 @@
+.product-container{
+    /* border: solid 1px #111; */
+    background-color: #fff;
+    padding: 20px;
+    margin: 0px;
+    margin-top: 20px;
+    height: 400px;
+}
+.p-img{
+    max-width: 200px;
+    max-height: 200px;
+}
+.product-details {
+    margin-top: 15px;
+}
+.product-details > p {
+    margin: 0px;
+}
+.p-name{
+    font-weight: 700;
+}
