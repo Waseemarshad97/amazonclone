@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../styles/Product.css';
-import { Rating } from '@material-ui/lab'
+import { Rating } from '@material-ui/lab';
+import {StateContext} from '../context/StateProvider';
+
 const Products = ({ name, price, rating, decription, image }) => {
+
+  const [{cart}, dispatch] = useContext(StateContext)
+  const addToCart = () => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      item: {
+        name:name,
+        image:image,
+        rating:rating,
+        price:price,
+        decription:decription,
+      }
+    })
+  };
+
   return (
     <div className="product-container">
       <div className="row">
         <div className="col-12 d-flex justify-content-center p-img-container">
-          <img className="p-img" alt="product-img" src={image} />
+          <img className="p-img" alt="product-img" src={image ? image : '../images/product-placeholder.gif'} />
         </div>
         <div className="col-12 product-details">
           <p className="p-name">{name}</p>
@@ -15,7 +32,7 @@ const Products = ({ name, price, rating, decription, image }) => {
           <p className="p-name">${price}</p>
         </div>
         <div className="col-12 d-flex">
-          <button className="btn loginbtn">Add to Cart</button>
+          <button className="btn loginbtn" onClick={addToCart}>Add to Cart</button>
         </div>
       </div>
     </div>
