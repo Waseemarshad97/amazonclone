@@ -4,19 +4,26 @@ import Products from "../Component/Products";
 import CarouselCont from '../Component/Carousel';
 import { db, storage } from "../firebase.js";
 
+const default_image = '../images/product-placeholder.gif';
 const Home = () => {
+
   const [product, setProduct] = useState([]);
   const [imageUrl, setImageUrl] = useState([]);
+  const promises = [];
+
   useEffect(() => {
-    db.collection("products").get().then((docs) => {
+    getProduct();
+  }, []);
+
+  const getProduct = () => {
+        db.collection("products").get().then((docs) => {
       docs.forEach((val) => {
         setProduct((prev) => ([...prev, val.data()]))
         const promise = storage
           .ref(val.get('image'))
           .getDownloadURL()
-          .catch(err => {
-            console.log('error', err);
-            return "";
+          .catch(() => {
+            return default_image;
           })
           .then((fileUrl) => {
             return fileUrl;
@@ -25,7 +32,7 @@ const Home = () => {
       });
 
       Promise.all(promises)
-        .catch(err => {
+        .catch((err) => {
           console.log('error', err);
         })
         .then((urls) => {
@@ -35,9 +42,7 @@ const Home = () => {
         })
     })
 
-  }, []);
-  const promises = [];
-
+  }
   return (
     <div className="home">
       <div className="background-x">
