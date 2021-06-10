@@ -6,70 +6,58 @@ import { db, storage } from "../firebase.js";
 
 const Home = () => {
   const [product, setProduct] = useState([]);
-
+  const [imageUrl, setImageUrl] = useState([]);
   useEffect(() => {
-    get_products();
-  }, []);
-
-  // useEffect(() => {
-  //   console.log(product);
-  // }, [product])
-  const get_products = () => {
-    //   db.collection("products").get().then((querySnapshot) => {
-    //       querySnapshot.forEach((doc) => {
-    //           // doc.data() is never undefined for query doc snapshots
-    //           console.log(doc.id, " => ", doc.data().description);
-    //       });
-    //   });
-    // };
     db.collection("products").get().then((docs) => {
-      docs.forEach((doc) => {
-        console.log(doc.data());
-        // To Get image url from database filename
-        const data = {
-          name: doc.data()?.name,
-          image: '',
-          rating: doc.data()?.rating,
-          description: doc.data()?.description,
-          price: doc.data()?.price,
-        }
-        storage.ref(doc.get('image')).getDownloadURL()
-          .then((url) => {
-            data.image = url;
-            setProduct((prev) => ([
-              ...prev,
-              data,
-            ]
-            ));
+      docs.forEach((val) => {
+        setProduct((prev) => ([...prev, val.data()]))
+        const promise = storage
+          .ref(val.get('image'))
+          .getDownloadURL()
+          .catch(err => {
+            console.log('error', err);
+            return "";
           })
-          .catch(() => {
-            setProduct((prev) => ([
-              ...prev,
-              data,
-            ]))
-          })
-        console.log(data);
+          .then((fileUrl) => {
+            return fileUrl;
+          });
+        promises.push(promise);
       });
-    });
-  }
+
+      Promise.all(promises)
+        .catch(err => {
+          console.log('error', err);
+        })
+        .then((urls) => {
+          urls.map((item) => (
+            setImageUrl((prev) => ([...prev, item]))
+          ))
+        })
+    })
+
+  }, []);
+  const promises = [];
+
   return (
     <div className="home">
       <div className="background-x">
         <CarouselCont />
       </div>
       <div className="container-fluid">
-        <div className="row products">
-          {product?.map((item) => (
-            <div className="col-md-3 col-sm-12">
-              <Products
-                name={item.name}
-                rating={item.rating}
-                price={item.price}
-                decription={item.description}
-                image={item.image}
-              />
-            </div>
-          ))}
+        <div className="row justify-content-center products">
+          {product.map((item, index) => {
+            return (
+              <div className="col-md-3 col-sm-12">
+                <Products
+                  name={item.name}
+                  rating={item.rating}
+                  price={item.price}
+                  decription={item.description}
+                  image={imageUrl[index]}
+                />
+              </div>
+            )
+          })}
 
         </div>
       </div>

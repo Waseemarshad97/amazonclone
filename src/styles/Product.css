@@ -6,12 +6,17 @@
     margin-top: 20px;
     height: 400px;
 }
+.p-img-container {
+    height: 200px;
+    width: 100%;
+}
 .p-img{
     max-width: 200px;
     max-height: 200px;
 }
 .product-details {
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    height: 130px;
 }
 .product-details > p {
     margin: 0px;

@@ -5,7 +5,7 @@ const Products = ({ name, price, rating, decription, image }) => {
   return (
     <div className="product-container">
       <div className="row">
-        <div className="col-12 d-flex justify-content-center">
+        <div className="col-12 d-flex justify-content-center p-img-container">
           <img className="p-img" alt="product-img" src={image} />
         </div>
         <div className="col-12 product-details">
@@ -14,7 +14,7 @@ const Products = ({ name, price, rating, decription, image }) => {
           <p>{decription}</p>
           <p className="p-name">${price}</p>
         </div>
-        <div className="col-12 mt-3 d-flex align-bottom">
+        <div className="col-12 d-flex">
           <button className="btn loginbtn">Add to Cart</button>
         </div>
       </div>
