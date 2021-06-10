@@ -1,0 +1,15 @@
+.cart-container{
+  border-bottom: solid 1px #111;
+  padding: 10px;
+  width: 100%;
+}
+.product-image{
+  max-width: 100px;
+  max-height: 100px;
+}
+.product-details{
+  float: right;
+}
+.cart{
+  max-height: 700px;
+}
