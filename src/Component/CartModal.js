@@ -4,8 +4,16 @@ import '../styles/CartModal.css';
 import {StateContext} from '../context/StateProvider';
 
 const CartModal = ({show, onHide, }) => {
-    const [{cart}, dispatch] = useContext(StateContext);
-    console.log(cart);
+    const [{cart}, dispatch] = useContext(StateContext)
+    const removeFromCart = (item) => {
+      dispatch({
+        type: 'REMOVE_FROM_CART',
+        // item: item
+        item: {
+      }
+      });
+    }
+
     return(
         <Modal size="lg" show={show} onHide={onHide} scrollable>
             <Modal.Header closeButton>
@@ -25,7 +33,7 @@ const CartModal = ({show, onHide, }) => {
                                     <p>{item.decription}</p>
                                     <strong>{item.price}</strong>
                                 </div>
-                                <button className="btn-sm btn-danger mt-2">Remove Item</button>
+                                <button className="btn-sm btn-danger mt-2" onClick={removeFromCart}>Remove Item</button>
                             </div>
                         ))}
                     </div>

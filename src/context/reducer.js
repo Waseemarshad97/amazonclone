@@ -11,9 +11,9 @@ const reducer = (state, action) => {
             cart: [...state.cart, action.item]
         }
         case 'REMOVE_FROM_CART':
-            let newCart = [...state.cart],
-            const index = state.cart.findIndex(action.item);
-            newCart.splice(index,1);
+            let newCart = [...state.cart];
+            const index = state.cart.indexOf(action.item);
+            newCart.splice(index);
             return {
                 ...state,
                 cart: newCart,
