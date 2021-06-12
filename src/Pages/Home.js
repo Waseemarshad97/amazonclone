@@ -22,8 +22,8 @@ const Home = () => {
         const promise = storage
           .ref(val.get('image'))
           .getDownloadURL()
-          .catch(() => {
-            return default_image;
+          .catch((error) => {
+            console.log(error);
           })
           .then((fileUrl) => {
             return fileUrl;
@@ -63,7 +63,6 @@ const Home = () => {
               </div>
             )
           })}
-
         </div>
       </div>
     </div>
