@@ -18,8 +18,8 @@ const Products = ({ name, price, rating, description, image, id }) => {
         description:description,
         id:id,
       }
-    })
-  };
+    });
+  }
 
   return (
     <div className="product-container">
