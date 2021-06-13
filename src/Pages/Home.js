@@ -4,7 +4,6 @@ import Products from "../Component/Products";
 import CarouselCont from '../Component/Carousel';
 import { db, storage } from "../firebase.js";
 
-const default_image = '../images/product-placeholder.gif';
 const Home = () => {
 
   const [product, setProduct] = useState([]);
@@ -18,7 +17,8 @@ const Home = () => {
   const getProduct = () => {
         db.collection("products").get().then((docs) => {
       docs.forEach((val) => {
-        setProduct((prev) => ([...prev, val.data()]))
+        console.log(val.data());
+        setProduct((prev) => ([...prev, {...val.data(), id: val.id}]))
         const promise = storage
           .ref(val.get('image'))
           .getDownloadURL()
@@ -57,8 +57,9 @@ const Home = () => {
                   name={item.name}
                   rating={item.rating}
                   price={item.price}
-                  decription={item.description}
+                  description={item.description}
                   image={imageUrl[index]}
+                  id={item.id}
                 />
               </div>
             )

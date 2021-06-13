@@ -3,7 +3,7 @@
     padding-bottom: 30px;
 }
 .background-x{
-    z-index: -1;
+    z-index: -1 !important;
 }
 .blur{
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
@@ -16,6 +16,4 @@
     height: 30px !important;
     top: 10 !important;
 }
-/* .carousel-control-next, .carousel-control-prev {
-    top: -300px !important;
-} */
+.carousel-indicators li { visibility: hidden; }

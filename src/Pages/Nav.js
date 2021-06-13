@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/Nav.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 import CartModal from '../Component/CartModal';
+import { StateContext } from '../context/StateProvider';
 
 const Nav = () => {
     const [showModal, setShowModal] = useState(false);
-    
+    const [{ cart },] = useContext(StateContext);
+
     return (
         <div className="nav-container">
             <div className="logo-container">
@@ -32,7 +34,7 @@ const Nav = () => {
                 </Link>
                 <div className="w-one" onClick={() => setShowModal(!showModal)}>
                     <ShoppingCartOutlinedIcon className="cart-icon"/>
-                    <span className="cart-count">2</span>
+                    <span className="cart-count">{cart.length}</span>
                 </div>
             </div>
             <CartModal show={showModal} onHide={() => setShowModal(false)} />

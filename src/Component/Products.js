@@ -3,9 +3,10 @@ import '../styles/Product.css';
 import { Rating } from '@material-ui/lab';
 import {StateContext} from '../context/StateProvider';
 
-const Products = ({ name, price, rating, decription, image }) => {
+const Products = ({ name, price, rating, description, image, id }) => {
 
-  const [{cart}, dispatch] = useContext(StateContext)
+  const [,dispatch] = useContext(StateContext)
+
   const addToCart = () => {
     dispatch({
       type: 'ADD_TO_CART',
@@ -14,7 +15,8 @@ const Products = ({ name, price, rating, decription, image }) => {
         image:image,
         rating:rating,
         price:price,
-        decription:decription,
+        description:description,
+        id:id,
       }
     })
   };
@@ -28,7 +30,7 @@ const Products = ({ name, price, rating, decription, image }) => {
         <div className="col-12 product-details">
           <p className="p-name">{name}</p>
           <Rating name="half-rating-read" value={rating} defaultValue={2.5} precision={0.5} readOnly />
-          <p>{decription}</p>
+          <p>{description}</p>
           <p className="p-name">${price}</p>
         </div>
         <div className="col-12 d-flex">

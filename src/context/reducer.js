@@ -3,6 +3,9 @@ export const initialState = {
     cart: [],
 };
 
+export const getCartTotal = (cart) =>
+  cart?.reduce((amount, item) => item.price + amount, 0);
+
 const reducer = (state, action) => {
     switch(action.type) {
         case 'ADD_TO_CART':
@@ -11,8 +14,8 @@ const reducer = (state, action) => {
             cart: [...state.cart, action.item]
         }
         case 'REMOVE_FROM_CART':
-            let newCart = [...state.cart],
-            const index = state.cart.findIndex(action.item);
+            const index = state.cart.findIndex((item) => item.id === action.id);
+            let newCart = [...state.cart];
             newCart.splice(index,1);
             return {
                 ...state,

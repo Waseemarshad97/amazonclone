@@ -2,38 +2,29 @@ import React, {useContext} from 'react';
 import { Modal } from 'react-bootstrap';
 import '../styles/CartModal.css';
 import {StateContext} from '../context/StateProvider';
+import CartProduct from './CartProduct';
+import {getCartTotal} from '../context/reducer';
 
 const CartModal = ({show, onHide, }) => {
-    const [{cart}, dispatch] = useContext(StateContext);
-    console.log(cart);
+    const [{ cart },] = useContext(StateContext);
+
     return(
         <Modal size="lg" show={show} onHide={onHide} scrollable>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton className="cart-header">
                 <h3 className="ml-5">My Cart</h3>
             </Modal.Header>
-            <Modal.Body>
-                <div className="row cart">
+            <Modal.Body className="cart">
+                <div className="row">
+                    {cart?.map((item) => (
                     <div className="col-12">
-                        {cart?.map((item) => (
-                            <div className="cart-container">
-                                <img className="col-3 product-image"
-                                    src={item.image}
-                                    alt="name"
-                                />
-                                <div className="col-9 product-details">
-                                    <strong>{item.name}</strong>
-                                    <p>{item.decription}</p>
-                                    <strong>{item.price}</strong>
-                                </div>
-                                <button className="btn-sm btn-danger mt-2">Remove Item</button>
-                            </div>
-                        ))}
+                        <CartProduct image={item.image} name={item.name} price={item.price} description={item.description} rating={item.rating} id={item.id} />
                     </div>
-                    <h6 className="mt-3 ml-5">Subtotal ( {cart?.length} Item ) : <strong>1211121</strong></h6>
-                    <div className="col-12 d-flex justify-content-center mt-3">
+                    ))}
+                    <h6 className="mt-3 mx-auto px-5 py-3 bg-warning">Subtotal ( {cart?.length} Item ) : <strong>${' '}{getCartTotal(cart)}</strong></h6>
+                    <div className="col-10 mx-auto">
                         <button className="btn loginbtn mb-2">Proceed to Buy</button>
                     </div>
-                    <div className="col-12">
+                    <div className="col-10 mx-auto">
                         <button className="btn btn-sm btn-block btn-danger mb-4">Remove All</button>
                     </div>
                 </div>

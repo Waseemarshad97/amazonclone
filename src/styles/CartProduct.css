@@ -1,0 +1,29 @@
+.cart-container{
+  background-color: white;
+  padding: 20px 50px;
+  display: flex;
+  margin: 15px 0px;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+.cart-img{
+  max-width: 150px;
+  max-height: 130px;
+  display: flex;
+}
+.cart-details{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding-left: 50px;
+}
+.remove{
+    padding: 2px 20px;
+    color: #a53440;
+    font-weight: 500;
+    font-size: small;
+}
+.remove:hover{
+    border: solid 1px #a53440;
+    color: #a53440;
+}
