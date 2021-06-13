@@ -8,7 +8,7 @@ import { StateContext } from '../context/StateProvider';
 
 const Nav = () => {
     const [showModal, setShowModal] = useState(false);
-    const [{ cart },] = useContext(StateContext);
+    const [{ cart, user },] = useContext(StateContext);
 
     return (
         <div className="nav-container">
@@ -24,7 +24,7 @@ const Nav = () => {
             <div className="nav-elements">
                 <Link to="/login">
                     <div className="w-one">
-                        <small>Hello User <br /> <span className="navtxt">Sign In</span></small>
+                        <small>Hello { user ? user.displayName : 'User'} <br /> <span className="navtxt">{ user ? 'Sign Out' : 'Sign In'}</span></small>
                     </div>
                 </Link>
                 <Link to="/">

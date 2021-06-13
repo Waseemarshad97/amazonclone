@@ -1,15 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import '../styles/Login.css'
 import { auth } from "../firebase"
 import { useHistory, Link } from 'react-router-dom';
-
-
+import { StateContext } from '../context/StateProvider';
 
 const Signup = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [password2, setPassword2] = useState();
+    const [name, setName] = useState();
+
     const history = useHistory();
+    const [, dispatch] = useContext(StateContext);
 
     const handleSignup = (e) => {
         e.preventDefault()
@@ -20,6 +22,13 @@ const Signup = () => {
             .then((userCredential) => {
                 // Signed in 
                 var user = userCredential.user;
+                console.log(user);
+                dispatch({
+                    type: 'SET_USER',
+                    user: user,
+                })
+                console.log(name);
+                user.updateProfile({displayName: name })
                 history.push("/")
                 // ...
             })
@@ -48,7 +57,7 @@ const Signup = () => {
                             <div className="loginContainer">
                                 <h3 className="Fontone mt-2">Create Account</h3>
                                 <p className="fontfour">Enter your Name</p>
-                                <input className="inputone mb-3" placeholder="Name" type="text" required />
+                                <input className="inputone mb-3" placeholder="Name" type="text" onChange={(e) => setName(e.target.value)} required />
                                 <p className="fontfour">Enter Email</p>
                                 <input className="inputone mb-3" placeholder="email" type="email" onChange={(e) => setEmail(e.target.value)} required />
                                 <p className="fontfour">Enter password</p>
