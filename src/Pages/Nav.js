@@ -5,10 +5,21 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 import CartModal from '../Component/CartModal';
 import { StateContext } from '../context/StateProvider';
+import { auth } from '../firebase';
 
 const Nav = () => {
     const [showModal, setShowModal] = useState(false);
-    const [{ cart, user },] = useContext(StateContext);
+    const [{ cart, user }, dispatch] = useContext(StateContext);
+
+    const handleSignOut = () => {
+        if (user) {
+            auth.signOut();
+            dispatch({
+                type: 'SET_USER',
+                user: null,
+            }) 
+        }
+    }
 
     return (
         <div className="nav-container">
@@ -22,9 +33,10 @@ const Nav = () => {
                 </form>
             </div>
             <div className="nav-elements">
-                <Link to="/login">
-                    <div className="w-one">
-                        <small>Hello { user ? user.displayName : 'User'} <br /> <span className="navtxt">{ user ? 'Sign Out' : 'Sign In'}</span></small>
+                <Link to={ !user && "/login"}>
+                    <div className="w-one" onClick={handleSignOut}>
+                        <small>Hello { user ? user.displayName : 'User'} <br />
+                        <span className="navtxt">{ user ? 'Sign Out' : 'Sign In'}</span></small>
                     </div>
                 </Link>
                 <Link to="/">
