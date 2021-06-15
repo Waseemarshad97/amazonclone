@@ -25,7 +25,7 @@ const Products = ({ name, price, rating, description, image, id }) => {
     <div className="product-container">
       <div className="row">
         <div className="col-12 d-flex justify-content-center p-img-container">
-          <img className="p-img" alt="product-img" src={image ? image : '../images/product-placeholder.gif'} />
+          <img className="img-fluid" alt="product-img" src={image ? image : '../images/product-placeholder.gif'} />
         </div>
         <div className="col-12 product-details">
           <p className="p-name">{name}</p>
