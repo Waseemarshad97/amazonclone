@@ -1,21 +1,24 @@
 .nav-container{
-    display: flex;
+    /* display: flex;
     background-color: #0F1111;
     height: 60px;
     width: 100%;
     align-items: center;
     color: white;
-    z-index: 2;
+    z-index: 2; */
+    height: 60px;
+    background-color: #0F1111;
     position: sticky;
     top:0;
+    z-index: 2;
 }
 
 .logo-container{
   height: 50px;
-  margin-left: 16px;
 }
 .nav-logo{
     margin-top: 16px;
+    margin-left: 10px;
     width: 103px;
     height: 33px;
     padding: 4px;
@@ -24,21 +27,28 @@
   width: 70%;
   height: 38px;
   margin-left: 50px;
+  padding: 10px;
 }
-.search-container button {
-  
+.searchbtn {
     border: none;
     cursor: pointer;
+    color: #f2f1f1;
+    background-color: #e4a046;
+    border-radius: 0px 4px 4px 0px;
+    width: 2.5rem;
+    height: 38px;
+  }
+  .searchbtn > .MuiSvgIcon-root {
+    width: auto !important;
   }
   .nav-inputone{
-    width: 100%;   
+    width: 90%;   
     line-height: 15px;
     padding: 7px 10px 10px 0;
     border-radius: 4px 0px 0px 4px;
     margin: 0;
     border: 0;
-    height: 100%;
-    font-family: inherit;
+    height: 38px;
     font-size: 15px;
     background: white;
     color: #111;
@@ -48,13 +58,7 @@
   .nav-inputone:focus .search-container{
     outline: 2px #e47911 solid !important;
   }
-  .searchbtn{
-    color: #f2f1f1;
-    background-color: #e4a046;
-    border-radius: 0px 4px 4px 0px;
-    margin-right: 0px;
-    width: 2.5rem;
-  }
+
   .searchbtn:hover{
     background-color: #db9840;
   }
@@ -63,20 +67,21 @@
     font-weight: 700;
   }
   .w-one{
-    padding: 1px 5px;
+    padding: 1px 1px;
     cursor: pointer;
   }
   .w-one:hover{
     outline: white solid 1px;
   }
-  .nav-elements {
+  /* .nav-elements {
     display: flex;
     margin-left: 10px;
     height: 50px;
     justify-content: space-evenly;
     width: 30%;
     align-items: center;
-  }
+    color: white;
+  } */
   .nav-elements a{
     color: white !important;
   }

@@ -23,21 +23,21 @@ const Signup = () => {
                 // Signed in 
                 var user = userCredential.user;
                 console.log(user);
-                dispatch({
-                    type: 'SET_USER',
-                    user: user,
-                })
-                console.log(name);
-                user.updateProfile({displayName: name })
-                history.push("/")
-                // ...
+                user.updateProfile({displayName: name }).then(() => {
+                    const updatedUser = auth.currentUser;
+                    console.log(updatedUser);
+                    dispatch({
+                        type: 'SET_USER',
+                        user: updatedUser,
+                    })
+                    history.push("/");
+                    })
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                // ..
+                alert(errorMessage);
             });
-
         }
     }
 

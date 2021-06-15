@@ -17,7 +17,10 @@ const App = () => {
           <Home />
         </Route>
         <Route path='/login' component ={Login} />
-        <Route path='/payout' component ={Payout} />
+        <Route path='/payout'>
+          <Nav />
+          <Payout />
+        </Route>
         <Route path='/signup' component={Signup} />
       </Switch>
   </Router>

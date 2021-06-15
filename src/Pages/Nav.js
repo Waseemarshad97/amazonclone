@@ -20,26 +20,25 @@ const Nav = () => {
             }) 
         }
     }
-
     return (
-        <div className="nav-container">
-            <div className="logo-container">
+        <div className="row nav-container">
+            <div className="col-1 logo-container">
                 <img src="../images/logo2.png" className="nav-logo" alt="logo" />
             </div>
-            <div className="search-container">
-                <form className="d-flex">
+            <div className="col-7 search-container">
+                <form>
                     <input className="nav-inputone" type="text" placeholder="search" />
                     <button className="searchbtn text-dark" type="submit"><SearchIcon /></button>
                 </form>
             </div>
-            <div className="nav-elements">
+            <div className="col-3 nav-elements">
                 <Link to={ !user && "/login"}>
                     <div className="w-one" onClick={handleSignOut}>
                         <small>Hello { user ? user.displayName : 'User'} <br />
                         <span className="navtxt">{ user ? 'Sign Out' : 'Sign In'}</span></small>
                     </div>
                 </Link>
-                <Link to="/">
+                <Link to="/Payout">
                     <div className="w-one">
                         <small>Returns <br /> <span className="navtxt"> & Orders</span></small>
                     </div>
