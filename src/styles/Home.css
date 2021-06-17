@@ -9,7 +9,7 @@
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 .products {
-    margin-top: -250px;
+    margin-top: -220px;
 }
 .carousel-control-next-icon, .carousel-control-prev-icon {
     width: 30px !important;
@@ -17,3 +17,9 @@
     top: 10 !important;
 }
 .carousel-indicators li { visibility: hidden; }
+
+@media (max-width: 768px) {
+    .products {
+        margin-top: -70px;
+    }
+}

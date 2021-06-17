@@ -7,16 +7,22 @@
     height: 400px;
 }
 .p-img-container {
-    height: 200px;
+    height: 170px;
     width: 100%;
 }
 .product-details {
     /* margin-top: 15px; */
-    height: 130px;
+    height: 110px;
 }
 .product-details > p {
     margin: 0px;
 }
 .p-name{
     font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .product-container {
+        height: 300px;
+    }
 }

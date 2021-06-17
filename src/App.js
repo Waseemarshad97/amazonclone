@@ -6,19 +6,19 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Payout from './Pages/Payout';
 import Signup from './Pages/Signup';
-import Nav from './Pages/Nav';
+import Header from './Pages/Header';
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route path='/' exact>
-          <Nav />
+          <Header />
           <Home />
         </Route>
         <Route path='/login' component ={Login} />
         <Route path='/payout'>
-          <Nav />
+          <Header />
           <Payout />
         </Route>
         <Route path='/signup' component={Signup} />

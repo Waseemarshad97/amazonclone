@@ -1,9 +1,7 @@
 .cart-container{
   background-color: white;
   padding: 20px 50px;
-  display: flex;
   margin: 15px 0px;
-  justify-content: space-between;
   border-radius: 5px;
 }
 .cart-img{
