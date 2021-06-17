@@ -18,7 +18,7 @@ const CartModal = ({show, onHide, }) => {
         if (!user) {
             history.push('/login');
         } else {
-            history.push('/');
+            history.push('/Payout');
         }
     }
     return(
