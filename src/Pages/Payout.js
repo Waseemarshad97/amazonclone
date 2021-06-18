@@ -1,10 +1,53 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect, useState } from 'react'
 import '../styles/Payout.css';
 import { Rating } from '@material-ui/lab';
 import {StateContext} from '../context/StateProvider';
+import { db } from "../firebase.js";
 
 const Payout = () => {
   const [{ cart, user }, dispatch] = useContext(StateContext);
+  const [address, addAddress] = useState({})
+
+  useEffect(()=> {
+    getAddress()
+  }, []);
+
+  const getAddress = () => {
+    if (user) {
+
+      db.collection("address").doc(user.uid).get()
+      .then((doc) => {
+        addAddress(doc.data());
+      })
+      .catch((error) => {
+        console.error("Error reading document: ", error);
+      });
+
+    }
+  }
+
+  const setAddress = () => {
+    addAddress({
+      address: address.address,
+      city: address.city,
+      state: address.state,
+      country: address.country,
+    });
+    if(user) {
+      db.collection("address").doc(user.uid).set(address)
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
+    
+    }
+  } 
+
+const handleCheckout = () => {
+
+}
+
+
+
   return (
     <div className="po-container">
       <div className="row">
@@ -12,6 +55,7 @@ const Payout = () => {
           <div>
           <p class="payo-txt-1">Shopping Cart</p>
           <p class="po-txt-2">Deselect all items</p>
+          <p></p>
           </div>
           {cart?.map((item) => (
                   <div class="mb-3">
@@ -34,33 +78,27 @@ const Payout = () => {
         <div class="col-lg-4 ">
           <div class="payment-container-2">
             <div class="products-container3">
-              <p class="payo-txt-2">Add Address</p>
-              <input class="mb-4 inputone" placeholder="name"></input>
-              <input class="mb-4 inputone" placeholder="Address Line"></input>
-              <input class="mb-4 inputone" placeholder="Address line 2"></input>
-              <input class="mb-4 inputone" placeholder="Town/city"></input>
-              <input class="mb-4 inputone" placeholder="Phone number"></input>
-              <input class="mb-4 inputone" placeholder="Country"></input>
-              <div>
-              <button class="btn payoutbtn">Save Changes</button>
+              <p class="payo-txt-2">Address</p>
+              <form>
+                <input class="mb-4 inputone" placeholder="Address" onChange={(e) => addAddress({...address,address:e.target.value})} value={address.address} />
+                <input class="mb-4 inputone" placeholder="city" onChange={(e) => addAddress({...address,city:e.target.value})} value={address.city} />
+                <input class="mb-4 inputone" placeholder="state" onChange={(e) => addAddress({...address,state:e.target.value})} value={address.state} />
+                <input class="mb-4 inputone" placeholder="Country" onChange={(e) => addAddress({...address,country:e.target.value})} value={address.country} />
+              </form>
+              <button class="btn payoutbtn" type="button" onClick={setAddress}>Save Address</button>
             </div>
-            </div>
-            
-
           </div>
           <div class="checkout-container-2 mt-2">
             <div class="products-container2">
               <p class="payo-txt-2">Sub-Total : </p>
-              <button class="btn payoutbtn">Proceed To payment</button>
+              <button class="btn payoutbtn" type="button" onClick={handleCheckout}>Proceed To payment</button>
 
             </div>
-
           </div>
-
         </div>
-        
       </div>
     </div>
+  
   );
 }
 

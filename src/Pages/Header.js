@@ -14,6 +14,7 @@ const Header = () => {
     const handleSignOut = () => {
         if (user) {
             auth.signOut();
+            localStorage.removeItem('authUser');
             dispatch({
                 type: 'SET_USER',
                 user: null,

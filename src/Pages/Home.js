@@ -17,13 +17,12 @@ const Home = () => {
   const getProduct = () => {
         db.collection("products").get().then((docs) => {
       docs.forEach((val) => {
-        console.log(val.data());
         setProduct((prev) => ([...prev, {...val.data(), id: val.id}]))
         const promise = storage
           .ref(val.get('image'))
           .getDownloadURL()
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           })
           .then((fileUrl) => {
             return fileUrl;
@@ -33,7 +32,7 @@ const Home = () => {
 
       Promise.all(promises)
         .catch((err) => {
-          console.log('error', err);
+          console.error('error', err);
         })
         .then((urls) => {
           urls.map((item) => (

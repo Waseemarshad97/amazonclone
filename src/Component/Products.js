@@ -8,7 +8,6 @@ const Products = ({ name, price, rating, description, image, id }) => {
   const addToCart = () => {
     const icon = document.getElementById('shakeIcon');
     icon.classList.add("shakecart");
-    console.log(icon);
     dispatch({
       type: 'ADD_TO_CART',
       item: {

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import '../styles/Login.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const history = useHistory();
   const [, dispatch] = useContext(StateContext);
+  const [error, setError] = useState();
 
   const handleSiginin = (e) => {
     e.preventDefault()
@@ -18,16 +19,15 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-        console.log(user);
         dispatch({
           type: 'SET_USER',
           user: user,
         })
+        localStorage.setItem('authUser', JSON.stringify(user))
         history.push('/')
       })
       .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        setError(error.message);
       });
   }
   return (
@@ -39,6 +39,10 @@ const Login = () => {
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" className="logo" alt="logo" />
             </Link>
           </div>
+          {error && (<div className="border border-danger error-message">
+            <strong className="text-danger">{error}</strong>
+          </div>
+          )}
           <div className="baseContainer">
             <div className="loginContainer">
               <form>
@@ -47,7 +51,6 @@ const Login = () => {
                 <input className="inputone mb-3" type="tel" onChange={(e) => setEmail(e.target.value)} value={email} />
                 <p className="forgot fontthree">Password <span><a href="/">Forgot password?</a></span></p>
                 <input type="password" className="inputone mb-3" onChange={(e) => setPassword(e.target.value)} value={password} />
-
                 <button className="btn loginbtn" type="submit" onClick={handleSiginin}>Continue</button>
                 <p className="mt-3 txttwo">By continuing, you agree to amazon clone's <a className="txttwo" href="/">Conditions of Use</a> and  <a className="txttwo" href="/">Privacy's Notice.</a></p>
                 <a className="txttwo" href="/">Need Help?</a>

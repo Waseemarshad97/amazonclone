@@ -22,10 +22,8 @@ const Signup = () => {
             .then((userCredential) => {
                 // Signed in 
                 var user = userCredential.user;
-                console.log(user);
                 user.updateProfile({displayName: name }).then(() => {
                     const updatedUser = auth.currentUser;
-                    console.log(updatedUser);
                     dispatch({
                         type: 'SET_USER',
                         user: updatedUser,

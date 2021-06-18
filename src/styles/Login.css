@@ -133,3 +133,10 @@ display: flex;
     color: #cf8428;
     text-decoration: underline;
 }
+.error-message {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    margin-bottom: 10px;
+}
