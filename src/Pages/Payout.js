@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import '../styles/Payout.css';
 import { Rating } from '@material-ui/lab';
+import {StateContext} from '../context/StateProvider';
 
 const Payout = () => {
+  const [{ cart, user }, dispatch] = useContext(StateContext);
   return (
     <div className="po-container">
       <div className="row">
@@ -11,20 +13,22 @@ const Payout = () => {
           <p class="payo-txt-1">Shopping Cart</p>
           <p class="po-txt-2">Deselect all items</p>
           </div>
-          <div>
-          <div className="row box-2">
-                <img className="col-6 cart-img"
-                src="https://typeset-beta.imgix.net/elite-daily/2015/04/05165550/richdadpoordad.jpg?w=375&fit=max&auto=format%2Ccompress"
-                    alt="name"/>
-                <div className="col-6 cart-details">
-                    <strong>a book fo entrepreneurs</strong>
-                    <p className="my-1">Rich Dad poor DAd</p>
-                    <strong className="my-2">300</strong>
-                    <Rating name="half-rating-read" value={1} defaultValue={2.5} precision={0.5} readOnly />
-                </div>
-            </div>
-
-          </div>
+          {cart?.map((item) => (
+                  <div class="mb-3">
+                    <div className="row box-2">
+                         <img className="col-6 cart-img"
+                         src={item.image}
+                             alt="name"/>
+                         <div className="col-6 cart-details">
+                             <strong>{item.description}</strong>
+                             <p className="my-1">{item.name}</p>
+                             <strong className="my-2">{item.price}</strong>
+                             <Rating name="half-rating-read" value={item.rating} defaultValue={2.5} precision={0.5} readOnly />
+                         </div>
+                     </div>
+                   </div>
+               ))}
+  
 
         </div>
         <div class="col-lg-4 ">

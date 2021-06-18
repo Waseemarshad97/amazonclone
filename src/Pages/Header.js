@@ -7,7 +7,6 @@ import CartModal from '../Component/CartModal';
 import { StateContext } from '../context/StateProvider';
 import { auth } from '../firebase';
 import { Navbar, Form, InputGroup, FormControl, Button, Nav } from 'react-bootstrap';
-// import Offcanvas from 'react-bootstrap/Offcanvas';
 
 const Header = () => {
     const [showModal, setShowModal] = useState(false);
@@ -22,7 +21,7 @@ const Header = () => {
         }
     }
     return (
-      <div className="container-fluid">
+      <div className="container-fluid sticky-top">
         <Navbar bg="dark" expand="md" variant="dark" className="row nav-container">
           <Navbar.Toggle aria-controls="amazon-nav" />
           <div  className="w-one">
@@ -74,7 +73,7 @@ const Header = () => {
                     <small>Returns <br /> <span className="navtxt"> & Orders</span></small>
                   </div>
                 </Link>
-                <div className="w-one" onClick={() => setShowModal(!showModal)}>
+                <div className="w-one" id="shakeIcon" onClick={() => setShowModal(!showModal)}>
                   <ShoppingCartOutlinedIcon className="cart-icon" />
                   <span className="cart-count text-white">{cart.length}</span>
                 </div>

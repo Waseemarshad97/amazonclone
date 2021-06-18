@@ -4,10 +4,11 @@ import { Rating } from '@material-ui/lab';
 import {StateContext} from '../context/StateProvider';
 
 const Products = ({ name, price, rating, description, image, id }) => {
-
   const [,dispatch] = useContext(StateContext)
-
   const addToCart = () => {
+    const icon = document.getElementById('shakeIcon');
+    icon.classList.add("shakecart");
+    console.log(icon);
     dispatch({
       type: 'ADD_TO_CART',
       item: {
@@ -19,6 +20,7 @@ const Products = ({ name, price, rating, description, image, id }) => {
         id:id,
       }
     });
+    setTimeout(()=>{ icon.classList.remove("shakecart"); }, 600);
   }
 
   return (
