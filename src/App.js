@@ -8,6 +8,7 @@ import Payout from './Pages/Payout';
 import Signup from './Pages/Signup';
 import Header from './Pages/Header';
 import { StateContext } from './context/StateProvider';
+import Orders from './Pages/Orders';
 
 const App = () => {
 
@@ -35,6 +36,10 @@ const App = () => {
           <Payout />
         </Route>
         <Route path='/signup' component={Signup} />
+        <Route path='/orders'>
+          <Header />
+          <Orders />
+        </Route>
       </Switch>
   </Router>
 

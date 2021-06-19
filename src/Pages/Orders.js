@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import '../styles/Payout.css';
-
+import {StateContext} from '../context/StateProvider';
 
 const Orders = () => {
- 
+  const [{ cart, user }, dispatch] = useContext(StateContext);
 
   return (
     <div className="po-container">
@@ -27,8 +27,6 @@ const Orders = () => {
                             </div>
                    </div>
                ))}
-  
-
         </div>
       </div>
     </div>
