@@ -1,9 +1,23 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import '../styles/Payout.css';
 import {StateContext} from '../context/StateProvider';
 
 const Orders = () => {
-  const [{ cart, user }, dispatch] = useContext(StateContext);
+  const [{ orderbook, user }, dispatch] = useContext(StateContext);
+  useEffect(() => {getOrders()});
+
+  const getOrders = () => {
+    db.collection("orders").where('user_uid', '==', user.uid).get().then(
+      (orders) => {
+        orders.forEach(order => {
+          dispatch(
+            "ADD_TO_ORDERBOOK",
+            order
+          )
+        });
+      }
+    );
+}
 
   return (
     <div className="po-container">
@@ -14,7 +28,7 @@ const Orders = () => {
           <p class="po-txt-2">Deselect all items</p>
           <p></p>
           </div>
-          {cart?.map((item) => (
+          {orderbook?.map((item) => (
                     <div class="mb-3">
                       
                             <div className="col-12 cart-details">

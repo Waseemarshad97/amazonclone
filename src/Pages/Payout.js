@@ -22,7 +22,6 @@ const Payout = () => {
       .catch((error) => {
         console.error("Error reading document: ", error);
       });
-
     }
   }
 
@@ -43,7 +42,15 @@ const Payout = () => {
   } 
 
 const handleCheckout = () => {
-
+  db.collection("orders").doc().set(
+    {
+      user_uid: user.uid,
+      cart: cart,
+      address: address
+    }
+  )
+  .then(()=>{alert("Order Placed Sucessfully")})
+  .catch(()=>{alert("Unable to place order. Please try again later.")});
 }
 
 

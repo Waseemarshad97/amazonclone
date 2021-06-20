@@ -1,6 +1,7 @@
 export const initialState = {
     user: null,
     cart: [],
+    orderbook: [],
 };
 
 export const getCartTotal = (cart) =>
@@ -30,6 +31,11 @@ const reducer = (state, action) => {
             return {
             ...state,
             cart: [],
+        }
+        case 'ADD_TO_ORDERBOOK':
+            return {
+            ...state,
+            orderbook: [...state.orderbook, action.item]
         }
         default:
             return state;
