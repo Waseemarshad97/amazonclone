@@ -9,18 +9,24 @@ import Signup from './Pages/Signup';
 import Header from './Pages/Header';
 import { StateContext } from './context/StateProvider';
 import Orders from './Pages/Orders';
-
+import { auth } from './firebase';
 const App = () => {
 
   const [, dispatch] = useContext(StateContext)
+
+  const loggedUser = JSON.parse(localStorage.getItem('authUser'))
+
   useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem('authUser'))
-    if (loggedUser) {
-      dispatch({
-        type: 'SET_USER',
-        user: loggedUser,
-      });
-    }
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        localStorage.setItem('authUser', JSON.stringify(authUser))
+      } else {
+        localStorage.removeItem('authUser', JSON.stringify(authUser))
+      }
+    });
   }, []);
 
   return (

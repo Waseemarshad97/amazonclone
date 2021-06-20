@@ -10,11 +10,12 @@ import { Navbar, Form, InputGroup, FormControl, Button, Nav } from 'react-bootst
 
 const Header = () => {
     const [showModal, setShowModal] = useState(false);
-    const [{ cart, user }, dispatch] = useContext(StateContext);
+    const user = JSON.parse(localStorage.getItem('authUser'))
+    const [{ cart }, dispatch] = useContext(StateContext);
     const handleSignOut = () => {
         if (user) {
             auth.signOut();
-            localStorage.removeItem('authUser');
+            // localStorage.removeItem('authUser');
             dispatch({
                 type: 'SET_USER',
                 user: null,

@@ -5,19 +5,21 @@ import {StateContext} from '../context/StateProvider';
 import { db } from "../firebase.js";
 
 const Payout = () => {
-  const [{ cart, user }, dispatch] = useContext(StateContext);
   const [address, addAddress] = useState({})
+  const [{ orderbook, cart }, dispatch] = useContext(StateContext);
+  const user = JSON.parse(localStorage.getItem('authUser'));
 
   useEffect(()=> {
-    getAddress()
+    getAddress();
+    console.log('working');
   }, []);
 
   const getAddress = () => {
     if (user) {
-
       db.collection("address").doc(user.uid).get()
       .then((doc) => {
         addAddress(doc.data());
+        console.log(doc.data());
       })
       .catch((error) => {
         console.error("Error reading document: ", error);
@@ -37,22 +39,26 @@ const Payout = () => {
       .catch((error) => {
         console.error("Error writing document: ", error);
       });
-    
     }
-  } 
+  }
 
 const handleCheckout = () => {
-  db.collection("orders").doc().set(
-    {
-      user_uid: user.uid,
-      cart: cart,
-      address: address
-    }
-  )
-  .then(()=>{alert("Order Placed Sucessfully")})
-  .catch(()=>{alert("Unable to place order. Please try again later.")});
+  if (user && cart) {
+    var p_ids = [];
+    cart.map((product) => {
+      p_ids.push(product.id);
+    });
+    db.collection("orders").doc().set(
+      {
+        user_uid: user.uid,
+        cart: p_ids,
+        address: address
+      }
+    )
+    .then(()=>{alert("Order Placed Sucessfully")})
+    .catch(()=>{alert("Unable to place order. Please try again later.")});
+  }
 }
-
 
 
   return (
@@ -87,10 +93,10 @@ const handleCheckout = () => {
             <div class="products-container3">
               <p class="payo-txt-2">Address</p>
               <form>
-                <input class="mb-4 inputone" placeholder="Address" onChange={(e) => addAddress({...address,address:e.target.value})} value={address.address} />
-                <input class="mb-4 inputone" placeholder="city" onChange={(e) => addAddress({...address,city:e.target.value})} value={address.city} />
-                <input class="mb-4 inputone" placeholder="state" onChange={(e) => addAddress({...address,state:e.target.value})} value={address.state} />
-                <input class="mb-4 inputone" placeholder="Country" onChange={(e) => addAddress({...address,country:e.target.value})} value={address.country} />
+                <input class="mb-4 inputone" placeholder="Address" onChange={(e) => addAddress({...address,address:e.target.value})} value={address?.address} />
+                <input class="mb-4 inputone" placeholder="city" onChange={(e) => addAddress({...address,city:e.target.value})} value={address?.city} />
+                <input class="mb-4 inputone" placeholder="state" onChange={(e) => addAddress({...address,state:e.target.value})} value={address?.state} />
+                <input class="mb-4 inputone" placeholder="Country" onChange={(e) => addAddress({...address,country:e.target.value})} value={address?.country} />
               </form>
               <button class="btn payoutbtn" type="button" onClick={setAddress}>Save Address</button>
             </div>

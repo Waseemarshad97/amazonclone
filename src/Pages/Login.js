@@ -23,7 +23,7 @@ const Login = () => {
           type: 'SET_USER',
           user: user,
         })
-        localStorage.setItem('authUser', JSON.stringify(user))
+        // localStorage.setItem('authUser', JSON.stringify(user))
         history.push('/')
       })
       .catch((error) => {
