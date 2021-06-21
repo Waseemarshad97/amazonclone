@@ -7,8 +7,8 @@ import {getCartTotal} from '../context/reducer';
 import { Link, useHistory } from 'react-router-dom';
  
 const CartModal = ({show, onHide, }) => {
-    const user = JSON.parse(localStorage.getItem('authUser'))
-    const [{ cart}, dispatch] = useContext(StateContext);
+    // const user = JSON.parse(localStorage.getItem('authUser'))
+    const [{ user, cart}, dispatch] = useContext(StateContext);
     const history = useHistory();
     const clearCart = () => {
         dispatch({

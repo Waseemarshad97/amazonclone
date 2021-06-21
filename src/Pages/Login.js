@@ -19,10 +19,10 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-        dispatch({
-          type: 'SET_USER',
-          user: user,
-        })
+        // dispatch({
+        //   type: 'SET_USER',
+        //   user: user,
+        // })
         // localStorage.setItem('authUser', JSON.stringify(user))
         history.push('/')
       })
@@ -48,7 +48,7 @@ const Login = () => {
               <form>
                 <h3 className="Fontone">Sign-In</h3>
                 <p className="fontthree">Email or mobile phone number</p>
-                <input className="inputone mb-3" type="tel" onChange={(e) => setEmail(e.target.value)} value={email} />
+                <input className="inputone mb-3" type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
                 <p className="forgot fontthree">Password <span><a href="/">Forgot password?</a></span></p>
                 <input type="password" className="inputone mb-3" onChange={(e) => setPassword(e.target.value)} value={password} />
                 <button className="btn loginbtn" type="submit" onClick={handleSiginin}>Continue</button>
@@ -73,9 +73,9 @@ const Login = () => {
       <div className="row justify-content-center footer mt-4">
         <div className="col-3 mt-4">
           <div className="footerLinks">
-            <a href="/">Conditions of Use</a>
-            <a href="/">Privacy Notice</a>
-            <a href="/">Help</a>
+            <a href="/" className="px-2">Conditions of Use</a>
+            <a href="/" className="px-2">Privacy Notice</a>
+            <a href="/" className="px-2">Help</a>
           </div>
           <p className="text-center mt-2">© 2021, AmazonClone.com, Inc. or its affiliates</p>
         </div>
@@ -85,3 +85,4 @@ const Login = () => {
 }
 
 export default Login;
+

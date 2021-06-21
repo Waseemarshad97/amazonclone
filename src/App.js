@@ -23,8 +23,16 @@ const App = () => {
 
       if (authUser) {
         localStorage.setItem('authUser', JSON.stringify(authUser))
+        dispatch({
+          type: 'SET_USER',
+          user: authUser,
+        })
       } else {
         localStorage.removeItem('authUser', JSON.stringify(authUser))
+        dispatch({
+          type: 'SET_USER',
+          user: null,
+        })
       }
     });
   }, []);

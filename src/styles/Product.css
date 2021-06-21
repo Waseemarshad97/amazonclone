@@ -24,6 +24,9 @@
 
 @media (max-width: 768px) {
     .product-container {
-        height: 300px;
+        height: auto;
+    }
+    .product-details {
+        height: auto;
     }
 }

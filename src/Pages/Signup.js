@@ -9,7 +9,7 @@ const Signup = () => {
     const [password, setPassword] = useState();
     const [password2, setPassword2] = useState();
     const [name, setName] = useState();
-
+    const [error, setError] = useState();
     const history = useHistory();
     const [, dispatch] = useContext(StateContext);
 
@@ -32,9 +32,7 @@ const Signup = () => {
                     })
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                alert(errorMessage);
+                setError(error.message);
             });
         }
     }
@@ -49,7 +47,10 @@ const Signup = () => {
                         </Link>
                     </div>
 
-
+                    {error && (<div className="border border-danger error-message">
+                        <strong className="text-danger">{error}</strong>
+                    </div>
+                    )}
                     <div className="baseContainer">
                         <form onSubmit={handleSignup}>
                             <div className="loginContainer">
@@ -84,9 +85,9 @@ const Signup = () => {
             <div className="row justify-content-center footer mt-4">
                 <div className="col-3 mt-4">
                     <div className="footerLinks">
-                        <a href="/">Conditions of Use</a>
-                        <a href="/">Privacy Notice</a>
-                        <a href="/">Help</a>
+                        <a href="/" className="px-2">Conditions of Use</a>
+                        <a href="/" className="px-2">Privacy Notice</a>
+                        <a href="/" className="px-2">Help</a>
                     </div>
                     <p className="text-center mt-2">© 2021, AmazonClone.com, Inc. or its affiliates</p>
                 </div>

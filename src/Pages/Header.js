@@ -6,20 +6,14 @@ import { Link } from 'react-router-dom';
 import CartModal from '../Component/CartModal';
 import { StateContext } from '../context/StateProvider';
 import { auth } from '../firebase';
-import { Navbar, Form, InputGroup, FormControl, Button, Nav } from 'react-bootstrap';
+import { Navbar, InputGroup, Nav } from 'react-bootstrap';
 
 const Header = () => {
     const [showModal, setShowModal] = useState(false);
-    const user = JSON.parse(localStorage.getItem('authUser'))
-    const [{ cart }, dispatch] = useContext(StateContext);
+    const [{ user, cart },] = useContext(StateContext);
     const handleSignOut = () => {
         if (user) {
             auth.signOut();
-            // localStorage.removeItem('authUser');
-            dispatch({
-                type: 'SET_USER',
-                user: null,
-            }) 
         }
     }
     return (

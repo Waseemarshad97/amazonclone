@@ -4,8 +4,8 @@ import {StateContext} from '../context/StateProvider';
 import { db } from "../firebase.js";
 
 const Orders = () => {
-  const [{ orderbook }, dispatch] = useContext(StateContext);
-  const user = JSON.parse(localStorage.getItem('authUser'))
+  const [{ user, orderbook }, dispatch] = useContext(StateContext);
+  // const user = JSON.parse(localStorage.getItem('authUser'))
   console.log('user', user)
   useEffect(() => {getOrders()}, []);
 

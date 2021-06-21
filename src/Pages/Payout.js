@@ -6,8 +6,8 @@ import { db } from "../firebase.js";
 
 const Payout = () => {
   const [address, addAddress] = useState({})
-  const [{ orderbook, cart }, dispatch] = useContext(StateContext);
-  const user = JSON.parse(localStorage.getItem('authUser'));
+  const [{ user, orderbook, cart }, dispatch] = useContext(StateContext);
+  // const user = JSON.parse(localStorage.getItem('authUser'));
 
   useEffect(()=> {
     getAddress();
