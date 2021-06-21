@@ -1,22 +1,36 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import '../styles/Payout.css';
 import {StateContext} from '../context/StateProvider';
 import { db } from "../firebase.js";
 
 const Orders = () => {
-  const [{ user, orderbook }, dispatch] = useContext(StateContext);
-  // const user = JSON.parse(localStorage.getItem('authUser'))
-  console.log('user', user)
+  const [{ orderbook }, dispatch] = useContext(StateContext);
+  const user = JSON.parse(localStorage.getItem('authUser'))
   useEffect(() => {getOrders()}, []);
+  const [orderList, setorderlist] = useState([]);
 
   const getOrders = () => {
-    console.log('gigi');
+    
     if (user) {
-      db.collection("orders").doc(user.uid).get()
-      .then((doc) => {
-        // addAddress(doc.data());
-        console.log(doc.data());
-      })
+      db.collection("orders").where('user_uid','==',user.uid).get()
+      .then((listoforders) => {
+        listoforders.forEach((order) =>{
+          order.data().cart.forEach((product_id) =>{
+            db.collection("products").doc(product_id).get()
+            .then((item) => {
+              console.log(item.data());
+              setorderlist((prev) => ([...prev, item.data()]))
+              
+            }
+
+            );
+           }
+           );
+           
+        });
+      console.log(orderList);
+
+      });
     }
   }
 
@@ -27,18 +41,17 @@ const Orders = () => {
           <div>
           <p class="payo-txt-1">Orders</p>
           </div>
-          {orderbook?.forEach((item) => (
-                    <div class="mb-3">
-                            <div className="col-12 cart-details">
-                             <p className="my-1">{item.id}</p>
-                             <strong className="my-2">{item.name}</strong>
-                            <div class="d-flex">
-                            <p className="mr-2">cancel your order </p>
-                             <p>Track your order </p>   
-                            </div>
-                            </div>
-                   </div>
-               ))}
+          {
+          orderList.map((item) => {
+            return (
+              <div>
+                {item.name}
+              </div>
+
+            )
+        }
+        )
+          }
         </div>
       </div>
     </div>

@@ -3,12 +3,22 @@ import '../styles/Payout.css';
 import { Rating } from '@material-ui/lab';
 import {StateContext} from '../context/StateProvider';
 import { db } from "../firebase.js";
+import {getCartTotal} from '../context/reducer';
+import { Link, useHistory } from 'react-router-dom';
+
+
 
 const Payout = () => {
   const [address, addAddress] = useState({})
-  const [{ user, orderbook, cart }, dispatch] = useContext(StateContext);
-  // const user = JSON.parse(localStorage.getItem('authUser'));
+  const [{ orderbook, cart }, dispatch] = useContext(StateContext);
+  const user = JSON.parse(localStorage.getItem('authUser'));
+  const history = useHistory();
 
+  const clearCart = () => {
+    dispatch({
+        type: 'CLEAR_CART',
+    })
+}
   useEffect(()=> {
     getAddress();
     console.log('working');
@@ -55,9 +65,15 @@ const handleCheckout = () => {
         address: address
       }
     )
-    .then(()=>{alert("Order Placed Sucessfully")})
+    .then(()=>{
+      alert("Order Placed Sucessfully");
+      clearCart();
+      history.push("/");
+      
+    })
     .catch(()=>{alert("Unable to place order. Please try again later.")});
   }
+
 }
 
 
