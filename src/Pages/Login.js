@@ -1,29 +1,21 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../styles/Login.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { StateContext } from '../context/StateProvider';
 import { auth } from '../firebase';
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const history = useHistory();
-  const [, dispatch] = useContext(StateContext);
   const [error, setError] = useState();
 
   const handleSiginin = (e) => {
     e.preventDefault()
-      //  code from firebase
       auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // Signed in
         var user = userCredential.user;
-        // dispatch({
-        //   type: 'SET_USER',
-        //   user: user,
-        // })
-        // localStorage.setItem('authUser', JSON.stringify(user))
+        console.log(user);
         history.push('/')
       })
       .catch((error) => {
@@ -49,11 +41,11 @@ const Login = () => {
                 <h3 className="Fontone">Sign-In</h3>
                 <p className="fontthree">Email or mobile phone number</p>
                 <input className="inputone mb-3" type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-                <p className="forgot fontthree">Password <span><a href="/">Forgot password?</a></span></p>
+                <p className="forgot fontthree">Password <span><Link to="/">Forgot password?</Link></span></p>
                 <input type="password" className="inputone mb-3" onChange={(e) => setPassword(e.target.value)} value={password} />
                 <button className="btn loginbtn" type="submit" onClick={handleSiginin}>Continue</button>
-                <p className="mt-3 txttwo">By continuing, you agree to amazon clone's <a className="txttwo" href="/">Conditions of Use</a> and  <a className="txttwo" href="/">Privacy's Notice.</a></p>
-                <a className="txttwo" href="/">Need Help?</a>
+                <p className="mt-3 txttwo">By continuing, you agree to amazon clone's <Link className="txttwo" to="/">Conditions of Use</Link> and  <Link className="txttwo" to="/">Privacy's Notice.</Link></p>
+                <Link className="txttwo" to="/">Need Help?</Link>
               </form>
             </div>
 
@@ -73,9 +65,9 @@ const Login = () => {
       <div className="row justify-content-center footer mt-4">
         <div className="col-3 mt-4">
           <div className="footerLinks">
-            <a href="/" className="px-2">Conditions of Use</a>
-            <a href="/" className="px-2">Privacy Notice</a>
-            <a href="/" className="px-2">Help</a>
+            <Link to="/" className="px-2">Conditions of Use</Link>
+            <Link to="/" className="px-2">Privacy Notice</Link>
+            <Link to="/" className="px-2">Help</Link>
           </div>
           <p className="text-center mt-2">© 2021, AmazonClone.com, Inc. or its affiliates</p>
         </div>

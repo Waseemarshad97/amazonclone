@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -9,10 +9,11 @@ import Signup from './Pages/Signup';
 import Header from './Pages/Header';
 import { StateContext } from './context/StateProvider';
 import Orders from './Pages/Orders';
-import { auth } from './firebase';
+import { auth, db } from './firebase';
 const App = () => {
 
   const [, dispatch] = useContext(StateContext)
+  const [product, setProduct] = useState([]);
 
   const loggedUser = JSON.parse(localStorage.getItem('authUser'))
 

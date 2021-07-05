@@ -65,8 +65,8 @@ const Signup = () => {
                                 <input className="inputone mb-3" minLength={6} placeholder="password" onChange={(e) => setPassword2(e.target.value)} type="password" required />
                                 <button className="btn loginbtn" type="submit" >Sign Up</button>
 
-                                <p className="mt-3 txttwo">By continuing, you agree to amazon clone's <a className="txttwo" href="/">Conditions of Use</a> and  <a className="txttwo" href="/">Privacy's Notice.</a></p>
-                                <a className="txttwo" href="/">Need Help?</a>
+                                <p className="mt-3 txttwo">By continuing, you agree to amazon clone's <Link className="txttwo" to="/">Conditions of Use</Link> and  <Link className="txttwo" to="/">Privacy's Notice.</Link></p>
+                                <Link className="txttwo" to="/">Need Help?</Link>
 
 
                                 <p className="mt-3 txttwo">Already have an Account ? <Link className="txttwo m-1" to="/Login">Sign In</Link></p>
@@ -85,9 +85,9 @@ const Signup = () => {
             <div className="row justify-content-center footer mt-4">
                 <div className="col-3 mt-4">
                     <div className="footerLinks">
-                        <a href="/" className="px-2">Conditions of Use</a>
-                        <a href="/" className="px-2">Privacy Notice</a>
-                        <a href="/" className="px-2">Help</a>
+                        <Link to="/" className="px-2">Conditions of Use</Link>
+                        <Link to="/" className="px-2">Privacy Notice</Link>
+                        <Link to="/" className="px-2">Help</Link>
                     </div>
                     <p className="text-center mt-2">© 2021, AmazonClone.com, Inc. or its affiliates</p>
                 </div>

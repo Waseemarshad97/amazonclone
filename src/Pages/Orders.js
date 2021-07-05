@@ -1,59 +1,47 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/Payout.css';
-import {StateContext} from '../context/StateProvider';
 import { db } from "../firebase.js";
+import Order from '../Component/Order';
+import { Link } from 'react-router-dom';
 
 const Orders = () => {
-  const [{ orderbook }, dispatch] = useContext(StateContext);
   const user = JSON.parse(localStorage.getItem('authUser'))
-  useEffect(() => {getOrders()}, []);
+  useEffect(() => { getOrders() }, []);
   const [orderList, setorderlist] = useState([]);
 
   const getOrders = () => {
-    
     if (user) {
-      db.collection("orders").where('user_uid','==',user.uid).get()
-      .then((listoforders) => {
-        listoforders.forEach((order) =>{
-          order.data().cart.forEach((product_id) =>{
-            db.collection("products").doc(product_id).get()
-            .then((item) => {
-              console.log(item.data());
-              setorderlist((prev) => ([...prev, item.data()]))
-              
-            }
-
-            );
-           }
-           );
-           
+      db.collection("orders").where('user_uid', '==', user.uid).get()
+        .then((listoforders) => {
+          listoforders.forEach((order) => {
+            console.log(order.data());
+            setorderlist((prev) => ([...prev, { ...order.data() }]))
+          }
+          )
         });
-      console.log(orderList);
-
-      });
     }
   }
 
   return (
-    <div className="po-container">
-      <div className="row">
-        <div class="col-lg-8 products-container2">
-          <div>
-          <p class="payo-txt-1">Orders</p>
+      <div className="container-fluid po-container">
+        <div className="row">
+          <div className="col">
+            {
+              orderList.length ? 
+                orderList?.map((order) => (
+                <Order cart={order.cart} address={order.address} total={order.total} date={order.orderDate} />
+              )) :(
+                <div className="row vh-100">
+                  <div className="col-8 h-50 mx-auto mt-5 bg-white shadow d-flex flex-column justify-content-center">
+                    <h4 className="text-center">No Orders so far...!</h4>
+                    <h4 className="text-center">What are you waiting for ???</h4>
+                    <h4 className="text-center">Place your first Order now <Link to="/">Click here</Link></h4>
+                  </div>
+                </div>
+              )
+            }
           </div>
-          {
-          orderList.map((item) => {
-            return (
-              <div>
-                {item.name}
-              </div>
-
-            )
-        }
-        )
-          }
         </div>
-      </div>
     </div>
   );
 }

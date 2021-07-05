@@ -41,6 +41,7 @@
     border: 1px #979797b3 solid;
     outline: none;
     font-size: 14px;
+    padding-inline-start: 5px;
 }
 .inputone:focus{
     border: 0.5px rgb(255, 140, 0) solid ;

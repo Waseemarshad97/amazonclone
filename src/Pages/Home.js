@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/Home.css';
 import Products from "../Component/Products";
 import CarouselCont from '../Component/Carousel';
 import { db, storage } from "../firebase.js";
+import { StateContext } from '../context/StateProvider';
 
 const Home = () => {
 
   const [product, setProduct] = useState([]);
   const [imageUrl, setImageUrl] = useState([]);
+  const [, dispatch] = useContext(StateContext);
   const promises = [];
 
   useEffect(() => {
