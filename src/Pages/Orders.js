@@ -14,7 +14,6 @@ const Orders = () => {
       db.collection("orders").where('user_uid', '==', user.uid).get()
         .then((listoforders) => {
           listoforders.forEach((order) => {
-            console.log(order.data());
             setorderlist((prev) => ([...prev, { ...order.data() }]))
           }
           )

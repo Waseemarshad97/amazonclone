@@ -82,10 +82,29 @@
   font-weight: 700;
 }
 
-
+.close-button {
+  position: absolute !important;
+  left: 85% !important;
+  top: 40px !important;
+  color: white !important;
+  font-size: 32px !important;
+}
+.glass{
+  background-color: rgba(0,0,0,.8) !important;
+}
 .shakecart {
   animation: shake 0.5s 0.1s;
   -webkit-animation: shake 0.5s 0.1s;
+}
+.darker{
+  font-weight: 700;
+  font-size: larger !important;
+  color: black !important;
+}
+
+.icon-size{
+  font-size: x-large !important;
+  color: black !important;
 }
 
 @keyframes shake {

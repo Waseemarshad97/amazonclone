@@ -7,20 +7,21 @@ import CartModal from '../Component/CartModal';
 import { StateContext } from '../context/StateProvider';
 import { auth } from '../firebase';
 import { Navbar, InputGroup, Nav } from 'react-bootstrap';
+import SmallScreenHeader from './SmallScreenHeader';
 
 const Header = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [{ user, cart },] = useContext(StateContext);
-    const handleSignOut = () => {
-        if (user) {
-            auth.signOut();
-        }
+  const [showModal, setShowModal] = useState(false);
+  const [{ user, cart },] = useContext(StateContext);
+  const handleSignOut = () => {
+    if (user) {
+      auth.signOut();
     }
-    return (
-      <div className="container-fluid sticky-top">
+  }
+  return (
+    <>
+      <div className="container-fluid sticky-top d-none d-md-block">
         <Navbar bg="dark" expand="md" variant="dark" className="row nav-container">
-          <Navbar.Toggle aria-controls="amazon-nav" />
-          <div  className="w-one">
+          <div className="w-one">
             <Link to="/">
               <img
                 alt=""
@@ -30,17 +31,6 @@ const Header = () => {
                 height="30"
               />
             </Link>
-          </div>
-          <div className="d-md-none d-flex mb-2">
-            <Link to={!user && "/login"} className="pt-2">
-              <div className="text-white" onClick={handleSignOut}>
-                <small className="navtxt mb-0">{user ? 'Sign Out' : 'Sign In'}</small>
-              </div>
-            </Link>
-            <div className="w-one" onClick={() => setShowModal(!showModal)}>
-              <ShoppingCartOutlinedIcon className="cart-icon" />
-              <span className="cart-count text-white">{cart.length}</span>
-            </div>
           </div>
           <div className="d-flex flex-grow-1 ">
             <form className="col-12 ml-3">
@@ -56,7 +46,7 @@ const Header = () => {
             </form>
           </div>
           <div className="d-flex flex-grow-0 ml-2">
-            <Navbar.Collapse id="amazon-nav">
+            <>
               <Nav className="nav-elements">
                 <Link to={!user && "/login"}>
                   <div className="w-one" onClick={handleSignOut}>
@@ -74,13 +64,14 @@ const Header = () => {
                   <span className="cart-count text-white">{cart.length}</span>
                 </div>
               </Nav>
-            </Navbar.Collapse>
+            </>
           </div>
           <CartModal show={showModal} onHide={() => setShowModal(false)} />
         </Navbar>
       </div>
-      
-    )
+      <SmallScreenHeader />
+    </>
+  )
 }
 
 export default Header;
