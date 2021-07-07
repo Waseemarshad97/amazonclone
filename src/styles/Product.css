@@ -20,11 +20,18 @@
     font-weight: 700;
 }
 
-@media (max-width: 768px) {
+.rating-font{
+    font-size: 15px !important;
+}
+
+@media (max-width: 600px) {
     .product-container {
         height: auto;
     }
     .product-details {
         height: auto;
+    }
+    .rating-font{
+        font-size: 13px !important;
     }
 }

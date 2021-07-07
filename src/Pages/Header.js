@@ -11,11 +11,23 @@ import SmallScreenHeader from './SmallScreenHeader';
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
-  const [{ user, cart },] = useContext(StateContext);
+  const [searchText, setSearchText] = useState();
+
+  const [{ user, cart, products, originalProducts },dispatch] = useContext(StateContext);
   const handleSignOut = () => {
     if (user) {
       auth.signOut();
     }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const filtered = originalProducts.filter((item) => (item?.name?.toUpperCase().includes(searchText.toUpperCase())))
+    console.log(filtered)
+    dispatch({
+      type: 'FILTER',
+      item: filtered,
+    })
   }
   return (
     <>
@@ -33,11 +45,24 @@ const Header = () => {
             </Link>
           </div>
           <div className="d-flex flex-grow-1 ">
-            <form className="col-12 ml-3">
+            <form className="col-12 ml-3" onSubmit={handleSubmit}>
               <InputGroup>
                 <input type="text"
                   placeholder="Search"
                   className="nav-inputone"
+                  value={searchText}
+                  onChange={(e) => {
+                    if (e.target.value.length){
+                      setSearchText(e.target.value)
+                    } else {
+                      setSearchText(e.target.value)
+                      dispatch({
+                        type: 'FILTER',
+                        item: originalProducts,
+                      })
+                    }
+                   }
+                  }
                 />
                 <InputGroup.Prepend>
                   <button className="searchbtn text-dark" type="submit"><SearchIcon /></button>

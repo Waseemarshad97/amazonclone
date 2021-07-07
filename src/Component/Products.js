@@ -25,13 +25,13 @@ const Products = ({ name, price, rating, description, image, id }) => {
   return (
     <div className="container product-container">
       <div className="row mb-5">
-        <div className="col-6 col-md-12 d-flex justify-content-center p-img-container">
+        <div className="col-5 col-sm-6 col-md-12 d-flex justify-content-center p-img-container">
           <img className="img-fluid" alt="product-img" src={image ? image : '../images/product-placeholder.gif'} />
         </div>
-        <div className="col-6 col-md-12 mt-1 product-details">
+        <div className="col-5 col-sm-6 col-md-12 mt-1 product-details">
           <p className="p-name">{name}</p>
-          <Rating name="half-rating-read" value={rating} defaultValue={2.5} precision={0.5} readOnly />
-          <p>{description}</p>
+          <Rating className="rating-font d-flex flex-wrap" name="half-rating-read" value={rating} defaultValue={2.5} precision={0.5} readOnly />
+          <p className="d-flex rating-font">{description}</p>
           <p className="p-name">${price}</p>
         </div>
       </div>

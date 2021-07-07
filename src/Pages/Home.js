@@ -2,48 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import '../styles/Home.css';
 import Products from "../Component/Products";
 import CarouselCont from '../Component/Carousel';
-import { db, storage } from "../firebase.js";
 import { StateContext } from '../context/StateProvider';
 
 const Home = () => {
 
   const [product, setProduct] = useState([]);
-  const [imageUrl, setImageUrl] = useState([]);
-  const [, dispatch] = useContext(StateContext);
-  const promises = [];
+  const [ { products, images },] = useContext(StateContext);
 
   useEffect(() => {
-    getProduct();
-  }, []);
+    setProduct(products)
+  }, [products]);
 
-  const getProduct = () => {
-        db.collection("products").get().then((docs) => {
-      docs.forEach((val) => {
-        setProduct((prev) => ([...prev, {...val.data(), id: val.id}]))
-        const promise = storage
-          .ref(val.get('image'))
-          .getDownloadURL()
-          .catch((error) => {
-            console.error(error);
-          })
-          .then((fileUrl) => {
-            return fileUrl;
-          });
-        promises.push(promise);
-      });
-
-      Promise.all(promises)
-        .catch((err) => {
-          console.error('error', err);
-        })
-        .then((urls) => {
-          urls.map((item) => (
-            setImageUrl((prev) => ([...prev, item]))
-          ))
-        })
-    })
-
-  }
   return (
     <div className="home">
       <div className="background-x">
@@ -51,20 +20,24 @@ const Home = () => {
       </div>
       <div className="container-fluid">
         <div className="row justify-content-center products">
-          {product.map((item, index) => {
+          {product.length ? product.map((item, index) => {
             return (
-              <div className="col-md-3 col-sm-12">
+              <div className="col-12 col-md-4 col-lg-3">
                 <Products
                   name={item.name}
                   rating={item.rating}
                   price={item.price}
                   description={item.description}
-                  image={imageUrl[index]}
+                  image={images[index]}
                   id={item.id}
                 />
               </div>
             )
-          })}
+          }):
+              <div className="col-10 col-md-6 d-flex bg-white flex-column text-center mx-auto mt-5 py-5 border border-danger border">
+                <h5 className="text-danger mt-5">Oops !!! No Products Available</h5>
+            </div>
+            }
         </div>
       </div>
     </div>

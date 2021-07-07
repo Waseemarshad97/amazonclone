@@ -3,6 +3,8 @@ export const initialState = {
     cart: [],
     orderbook: [],
     products: [],
+    images: [],
+    originalProducts: [],
 };
 
 export const getCartTotal = (cart) =>
@@ -34,10 +36,16 @@ const reducer = (state, action) => {
             cart: [],
         }
         case 'SET_PRODUCTS':
-            // console.log(state.products)
             return {
             ...state,
-            products: [...state.products, action.item]
+            products: action.item,
+            originalProducts: action.item,
+            images: action.images,
+        }
+        case 'FILTER':
+            return {
+            ...state,
+            products: action.item,
         }
         default:
             return state;

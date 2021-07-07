@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Navbar, InputGroup, Nav } from 'react-bootstrap';
+import { Navbar, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SlidingPanel from 'react-sliding-side-panel';
 import 'react-sliding-side-panel/lib/index.css';
@@ -16,13 +16,24 @@ const SmallScreenHeader = () => {
 
     const [openPanel, setOpenPanel] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [{ user, cart },] = useContext(StateContext);
+    const [searchText, setSearchText] = useState();
+    const [{ user, cart, originalProducts },dispatch] = useContext(StateContext);
     const handleSignOut = () => {
         setOpenPanel(false);
         if (user) {
             auth.signOut();
         }
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const filtered = originalProducts.filter((item) => (item?.name?.toUpperCase().includes(searchText.toUpperCase())))
+        console.log(filtered)
+        dispatch({
+          type: 'FILTER',
+          item: filtered,
+        })
+      }
     return (
         <div className="d-md-none container-fluid sticky-top">
             <Navbar bg="dark" expand="md" variant="dark" className="row px-0 nav-container">
@@ -30,7 +41,6 @@ const SmallScreenHeader = () => {
                     <div className="d-flex pl-2">
                         <MenuIcon className="bg-dark mt-2 text-white"
                             onClick={() => {
-                                //   setPanelType('left');
                                 setOpenPanel(true);
                             }}
                         />
@@ -60,11 +70,24 @@ const SmallScreenHeader = () => {
                 </div>
                 <div className="col-12">
                     <div className="d-flex flex-grow-1 ">
-                        <form className="col-12 mt-1">
+                        <form className="col-12 mt-1" onSubmit={handleSubmit}>
                             <InputGroup>
                                 <input type="text"
                                     placeholder="Search"
                                     className="nav-inputone"
+                                    value={searchText}
+                                    onChange={(e) => {
+                                      if (e.target.value.length){
+                                        setSearchText(e.target.value)
+                                      } else {
+                                        setSearchText(e.target.value)
+                                        dispatch({
+                                          type: 'FILTER',
+                                          item: originalProducts,
+                                        })
+                                      }
+                                     }
+                                    }
                                 />
                                 <InputGroup.Prepend>
                                     <button className="searchbtn text-dark" type="submit"><SearchIcon /></button>
@@ -109,9 +132,9 @@ const SmallScreenHeader = () => {
                                     <p className="text-dark">Buy Again</p>
                                 </div>
                             </Link>
-                            <Link to="/" onClick={handleSignOut} className="pl-2 mt-3">
+                            <Link to={!user && "/login"} onClick={handleSignOut} className="pl-2 mt-3">
                                 <div>
-                                    <p className="text-dark">Sign Out</p>
+                                    <p className="text-dark">{user? 'Sign Out': 'Sign In'}</p>
                                 </div>
                             </Link>
                         </div>
