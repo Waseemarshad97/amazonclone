@@ -13,7 +13,7 @@ const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchText, setSearchText] = useState();
 
-  const [{ user, cart, products, originalProducts },dispatch] = useContext(StateContext);
+  const [{ user, cart, originalProducts },dispatch] = useContext(StateContext);
   const handleSignOut = () => {
     if (user) {
       auth.signOut();

@@ -16,7 +16,6 @@ const App = () => {
   const [product, setProduct] = useState([]);
   const [imageUrl, setImageUrl] = useState([]);
   const promises = [];
-  const loggedUser = JSON.parse(localStorage.getItem('authUser'))
 
   useEffect(() => {
 
